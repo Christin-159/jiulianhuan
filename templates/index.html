@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<title>九连环</title>
+<link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+<div class="wrap">
+    <h1 id="title">九 连 环</h1>
+
+    <div id="board" class="board"></div>
+
+    <div class="info">
+        <span>步数：<b id="step">0</b></span>
+        <span id="status">目标：全部解下</span>
+    </div>
+
+    <div class="controls">
+        <button id="autoSolve">🤖 自动求解</button>
+        <button id="reset">🔄 重置（全上）</button>
+        <button id="removeAll">⬇️ 全部解下</button>
+    </div>
+</div>
+<script>
+    const N = Number('{{ n }}');
+</script>
+<script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html>

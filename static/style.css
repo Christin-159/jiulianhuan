@@ -1,0 +1,94 @@
+* { box-sizing: border-box; }
+body {
+    font-family: "PingFang SC", sans-serif;
+    background: linear-gradient(135deg, #2b1055, #7597de);
+    min-height: 100vh;
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #fff;
+}
+.wrap {
+    background: rgba(255,255,255,0.08);
+    padding: 30px 40px;
+    border-radius: 20px;
+    backdrop-filter: blur(10px);
+    box-shadow: 0 20px 50px rgba(0,0,0,0.35);
+    text-align: center;
+}
+h1 {
+    letter-spacing: 12px;
+    margin: 0 0 20px;
+    font-weight: 400;
+    user-select: none;        /* 👈 禁止选中文字 */
+    -webkit-user-select: none; /* Safari / 旧版 Chrome */
+}
+
+.board {
+    position: relative;
+    width: 560px;
+    height: 260px;
+    margin: 0 auto 15px;
+}
+/* 横梁 */
+.rail {
+    position: absolute;
+    top: 40px; left: 0;
+    width: 100%; height: 14px;
+    background: linear-gradient(#e0c080, #b8860b);
+    border-radius: 7px;
+    box-shadow: 0 3px 6px rgba(0,0,0,0.4);
+}
+/* 每个环 */
+.ring {
+    position: absolute;
+    width: 26px;
+    height: 130px;
+    border: 6px solid #ffd54a;
+    border-radius: 50%;
+    cursor: pointer;
+    transition: all 0.4s ease;
+    top: 6px;
+    box-shadow: inset 0 0 8px rgba(255,255,255,0.5),
+                0 0 10px rgba(255,200,0,0.5);
+}
+/* 在架上：挂在横梁 */
+.ring.on  { top: 6px; }
+/* 解下：掉到横梁下方 */
+.ring.off { top: 90px; opacity: 0.7; border-color: #888; box-shadow: none; }
+/* 可点击高亮 */
+.ring.clickable { animation: glow 1.2s infinite alternate; }
+@keyframes glow {
+    from { box-shadow: 0 0 6px #fff; }
+    to   { box-shadow: 0 0 20px #7ef; }
+}
+
+.info { margin: 12px 0; font-size: 15px; opacity: 0.9; }
+.info b { color: #ffd54a; font-size: 18px; }
+
+.controls button {
+    margin: 6px 4px;
+    padding: 9px 16px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    background: #ffd54a;
+    color: #2b1055;
+    font-weight: bold;
+    transition: transform .15s;
+}
+.controls button:hover { transform: translateY(-2px); }
+.controls button:disabled { opacity: .4; cursor: not-allowed; transform: none; }
+
+@keyframes popIn {
+    0% { transform: translate(-50%, -50%) scale(0); opacity: 0; }
+    100% { transform: translate(-50%, -50%) scale(1); opacity: 1; }
+}
+.confetti {
+    position: fixed; top: -10px; width: 10px; height: 10px;
+    z-index: 9998; animation: fall 3s linear forwards; pointer-events: none;
+}
+@keyframes fall {
+    to { transform: translateY(100vh) rotate(720deg); }
+}
